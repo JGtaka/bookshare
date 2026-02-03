@@ -9,6 +9,7 @@ services:
   #webコンテナ
   web:
     build: .
+    user: "${UID}:${GID}"
     depends_on:
       - db
     environment:
