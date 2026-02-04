@@ -1,0 +1,36 @@
+# .rubocop.yml
+AllCops:
+  # Rubyバージョンの指定
+  TargetRubyVersion: 3.1
+  NewCops: enable
+  SuggestExtensions: false
+
+  # 除外するファイルやディレクトリ
+  Exclude:
+    - "db/**/*"
+    - "bin/**/*"
+    - "vendor/**/*"
+    - "node_modules/**/*"
+    - "config/**/*"
+    - "tmp/**/*"
+    - "log/**/*"
+
+# 行の長さに関する設定
+Layout/LineLength:
+  Max: 120
+
+# メソッドの行数制限
+Metrics/MethodLength:
+  Max: 20
+
+# クラスの行数制限
+Metrics/ClassLength:
+  Max: 200
+
+# ドキュメントコメントの要求を無効化
+Style/Documentation:
+  Enabled: false
+
+# 日本語コメントを許可
+Style/AsciiComments:
+  Enabled: false
