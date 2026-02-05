@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build containers
+        run: docker compose build
+
+      - name: Start containers
+        run: docker compose up -d
+
+      - name: Run RuboCop
+        run: docker compose exec -T web bundle exec rubocop
+
+      - name: Run RSpec
+        run: docker compose exec -T web bundle exec rspec
+
+      - name: Stop containers
+        if: always()
+        run: docker compose down
