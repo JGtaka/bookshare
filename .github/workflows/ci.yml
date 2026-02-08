@@ -22,11 +22,7 @@ jobs:
         run: docker compose up -d
 
       - name: Run RuboCop
-        run: docker compose exec -T web bundle exec rubocop
+        run: docker compose run --rm web bundle exec rubocop
 
       - name: Run RSpec
-        run: docker compose exec -T web bundle exec rspec
-
-      - name: Stop containers
-        if: always()
-        run: docker compose down
+        run: docker compose run --rm web bundle exec rspec
