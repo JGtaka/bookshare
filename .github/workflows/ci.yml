@@ -22,7 +22,7 @@ jobs:
         run: docker compose up -d
 
       - name: Run RuboCop
-        run: docker compose run --rm web bundle exec rubocop
+        run: bundle exec rubocop
 
       - name: Run RSpec
-        run: docker compose exec -T web bundle exec rspec
+        run: bundle exec rspec
