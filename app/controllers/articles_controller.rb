@@ -21,6 +21,20 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
   end
 
+  def edit
+    @article = current_user.articles.find(params[:id])
+  end
+
+   def update
+    @article = current_user.articles.find(params[:id])
+    if @article.update(article_params)
+      redirect_to article_path(@article), success: t('defaults.flash_message.updated', item: Article.model_name.human)
+    else
+      flash.now[:danger] = t('defaults.flash_message.not_updated', item: Article.model_name.human)
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def article_params

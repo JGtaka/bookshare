@@ -14,12 +14,7 @@ articles
                         <%= link_to article.title, article_path(article) %>
                       </h4>
                       <div class='ms-auto'>
-                        <%= link_to '#', id: "button-edit-#{article.id}" do %>
-                          <i class="bi bi-pencil-fill"></i>
-                        <% end %>
-                        <%= link_to '#', id: "button-delete-#{article.id}", method: :delete, data: {confirm: ''} do %>
-                          <i class="bi bi-trash-fill"></i>
-                        <% end %>
+                        <%= link_to '記事編集', edit_article_path(article), id: "button-edit-#{article.id}"  %>
                       </div>
                     </div>
                     <ul class="list-inline">
