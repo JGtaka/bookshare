@@ -9,7 +9,7 @@ RSpec.describe Article, type: :model do
     end
 
     it 'titleがない場合にバリデーションが機能してinvalidになるか' do
-      article_without_title = build(:article, title: "")
+      article_without_title = build(:article, title: '')
       expect(article_without_title).to be_invalid
       expect(article_without_title.errors[:title]).to eq ["can't be blank"]
     end

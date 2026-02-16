@@ -3,7 +3,7 @@ class ArticlesController < ApplicationController
     @articles = Article.includes(:user)
   end
 
-  def new 
+  def new
     @article = Article.new
   end
 
