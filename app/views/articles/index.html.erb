@@ -1,0 +1,42 @@
+articles
+<!-- 記事一覧 -->
+  <div class="row">
+    <div class="col-12">
+      <div class="row">
+        <% if @articles.present? %>
+          <% @articles.each do |article| %>
+            <div class="col-sm-12 col-lg-4 mb-3">
+              <div id="article-id-<%= article.id %>">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="d-flex">
+                      <h4 class="card-title">
+                        <%= link_to article.title, '#' %>
+                      </h4>
+                      <div class='ms-auto'>
+                        <%= link_to '#', id: "button-edit-#{article.id}" do %>
+                          <i class="bi bi-pencil-fill"></i>
+                        <% end %>
+                        <%= link_to '#', id: "button-delete-#{article.id}", method: :delete, data: {confirm: ''} do %>
+                          <i class="bi bi-trash-fill"></i>
+                        <% end %>
+                      </div>
+                    </div>
+                    <ul class="list-inline">
+                      <li><i class="bi bi-calendar"></i><%= l article.created_at, format: :short %></li>
+                    </ul>
+                    <p class="card-text"><%= article.body %></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% else %>
+          <div class="mb-3">記事がありません</div>
+        <% end %>  
+       </div>
+    </div>
+  </div>
+
+
+<%= link_to 'ログイン', root_path %>
