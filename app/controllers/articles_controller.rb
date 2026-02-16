@@ -35,6 +35,12 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def destroy
+    @article = current_user.articles.find(params[:id])
+    @article.destroy!
+    redirect_to articles_path, success: t('defaults.flash_message.deleted', item: Article.model_name.human), status: :see_other
+  end
+
   private
 
   def article_params
