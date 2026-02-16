@@ -3,7 +3,7 @@ class ArticlesController < ApplicationController
     @articles = Article.includes(:user)
   end
 
-  def new 
+  def new
     @article = Article.new
   end
 
@@ -15,6 +15,10 @@ class ArticlesController < ApplicationController
       flash.now[:danger] = t('defaults.flash_message.not_created', item: Article.model_name.human)
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def show
+    @article = Article.find(params[:id])
   end
 
   private
