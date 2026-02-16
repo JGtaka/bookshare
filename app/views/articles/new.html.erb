@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 offset-lg-2">
+      <h1><%= t('.title') %></h1>
+      <%= form_with model: @article, class: "new_article" do |f| %>
+        <div class="mb-3">
+          <%= f.label :title %>
+          <%= f.text_field :title, class: "form-control" %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :body %>
+          <%= f.text_area :body, class: "form-control", rows: "10" %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :curriculum %>
+          <%= f.text_area :curriculum, class: "form-control"%>
+        </div>
+        <%= f.submit nil, class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<%= link_to '記事一覧', articles_path %>
