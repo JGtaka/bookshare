@@ -15,6 +15,7 @@ articles
                       </h4>
                       <div class='ms-auto'>
                         <%= link_to '記事編集', edit_article_path(article), id: "button-edit-#{article.id}"  %>
+                        <%= link_to '削除', article_path(article), data: { turbo_method: :delete, turbo_confirm: t('defaults.delete_confirm') } %>
                       </div>
                     </div>
                     <ul class="list-inline">
