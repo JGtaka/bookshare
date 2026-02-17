@@ -1,0 +1,15 @@
+current directory: /bookshare/vendor/bundle/ruby/3.1.0/gems/cgi-0.5.1/ext/cgi/escape
+/usr/local/bin/ruby -I /usr/local/lib/ruby/3.1.0 extconf.rb
+creating Makefile
+
+current directory: /bookshare/vendor/bundle/ruby/3.1.0/gems/cgi-0.5.1/ext/cgi/escape
+make DESTDIR\= sitearchdir\=./.gem.20260217-10-xy1am5 sitelibdir\=./.gem.20260217-10-xy1am5 clean
+
+current directory: /bookshare/vendor/bundle/ruby/3.1.0/gems/cgi-0.5.1/ext/cgi/escape
+make DESTDIR\= sitearchdir\=./.gem.20260217-10-xy1am5 sitelibdir\=./.gem.20260217-10-xy1am5
+compiling escape.c
+linking shared-object cgi/escape.so
+
+current directory: /bookshare/vendor/bundle/ruby/3.1.0/gems/cgi-0.5.1/ext/cgi/escape
+make DESTDIR\= sitearchdir\=./.gem.20260217-10-xy1am5 sitelibdir\=./.gem.20260217-10-xy1am5 install
+/usr/bin/install -c -m 0755 escape.so ./.gem.20260217-10-xy1am5/cgi

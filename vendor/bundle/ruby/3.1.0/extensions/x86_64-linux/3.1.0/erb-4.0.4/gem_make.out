@@ -1,0 +1,15 @@
+current directory: /bookshare/vendor/bundle/ruby/3.1.0/gems/erb-4.0.4/ext/erb/escape
+/usr/local/bin/ruby -I /usr/local/lib/ruby/3.1.0 extconf.rb
+creating Makefile
+
+current directory: /bookshare/vendor/bundle/ruby/3.1.0/gems/erb-4.0.4/ext/erb/escape
+make DESTDIR\= sitearchdir\=./.gem.20260217-10-s8o5as sitelibdir\=./.gem.20260217-10-s8o5as clean
+
+current directory: /bookshare/vendor/bundle/ruby/3.1.0/gems/erb-4.0.4/ext/erb/escape
+make DESTDIR\= sitearchdir\=./.gem.20260217-10-s8o5as sitelibdir\=./.gem.20260217-10-s8o5as
+compiling escape.c
+linking shared-object erb/escape.so
+
+current directory: /bookshare/vendor/bundle/ruby/3.1.0/gems/erb-4.0.4/ext/erb/escape
+make DESTDIR\= sitearchdir\=./.gem.20260217-10-s8o5as sitelibdir\=./.gem.20260217-10-s8o5as install
+/usr/bin/install -c -m 0755 escape.so ./.gem.20260217-10-s8o5as/erb
