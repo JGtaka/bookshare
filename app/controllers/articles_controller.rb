@@ -25,7 +25,7 @@ class ArticlesController < ApplicationController
     @article = current_user.articles.find(params[:id])
   end
 
-   def update
+  def update
     @article = current_user.articles.find(params[:id])
     if @article.update(article_params)
       redirect_to article_path(@article), success: t('defaults.flash_message.updated', item: Article.model_name.human)
@@ -38,7 +38,8 @@ class ArticlesController < ApplicationController
   def destroy
     @article = current_user.articles.find(params[:id])
     @article.destroy!
-    redirect_to articles_path, success: t('defaults.flash_message.deleted', item: Article.model_name.human), status: :see_other
+    redirect_to articles_path, success: t('defaults.flash_message.deleted', item: Article.model_name.human),
+                               status: :see_other
   end
 
   private
