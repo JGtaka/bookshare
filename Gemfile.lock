@@ -107,6 +107,9 @@ GEM
       railties (>= 7.0)
       responders
       warden (~> 1.2.3)
+    devise-i18n (1.16.0)
+      devise (>= 5.0.0)
+      rails-i18n
     diff-lcs (1.6.2)
     drb (2.2.3)
     erb (4.0.4)
@@ -329,6 +332,7 @@ DEPENDENCIES
   capybara
   debug
   devise
+  devise-i18n
   factory_bot_rails
   importmap-rails
   jbuilder
