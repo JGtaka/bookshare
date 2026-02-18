@@ -18,5 +18,7 @@ services:
       - "3000:3000"
     volumes:
       - .:/bookshare
+      - bundle-data:/bookshare/vendor/bundle
 volumes:
   db-data:
+  bundle-data:

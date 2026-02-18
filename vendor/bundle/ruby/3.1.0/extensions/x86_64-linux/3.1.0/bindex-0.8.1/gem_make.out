@@ -1,0 +1,15 @@
+current directory: /bookshare/vendor/bundle/ruby/3.1.0/gems/bindex-0.8.1/ext/skiptrace
+/usr/local/bin/ruby -I /usr/local/lib/ruby/3.1.0 extconf.rb
+creating Makefile
+
+current directory: /bookshare/vendor/bundle/ruby/3.1.0/gems/bindex-0.8.1/ext/skiptrace
+make DESTDIR\= sitearchdir\=./.gem.20260217-10-sp3udf sitelibdir\=./.gem.20260217-10-sp3udf clean
+
+current directory: /bookshare/vendor/bundle/ruby/3.1.0/gems/bindex-0.8.1/ext/skiptrace
+make DESTDIR\= sitearchdir\=./.gem.20260217-10-sp3udf sitelibdir\=./.gem.20260217-10-sp3udf
+compiling cruby.c
+linking shared-object skiptrace/internal/cruby.so
+
+current directory: /bookshare/vendor/bundle/ruby/3.1.0/gems/bindex-0.8.1/ext/skiptrace
+make DESTDIR\= sitearchdir\=./.gem.20260217-10-sp3udf sitelibdir\=./.gem.20260217-10-sp3udf install
+/usr/bin/install -c -m 0755 cruby.so ./.gem.20260217-10-sp3udf/skiptrace/internal

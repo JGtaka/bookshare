@@ -1,0 +1,21 @@
+current directory: /bookshare/vendor/bundle/ruby/3.1.0/gems/date-3.5.1/ext/date
+/usr/local/bin/ruby -I /usr/local/lib/ruby/3.1.0 extconf.rb
+checking for rb_category_warn()... yes
+checking for timezone in time.h with  -Werror... yes
+checking for altzone in time.h with  -Werror... no
+creating Makefile
+
+current directory: /bookshare/vendor/bundle/ruby/3.1.0/gems/date-3.5.1/ext/date
+make DESTDIR\= sitearchdir\=./.gem.20260217-10-j8509v sitelibdir\=./.gem.20260217-10-j8509v clean
+
+current directory: /bookshare/vendor/bundle/ruby/3.1.0/gems/date-3.5.1/ext/date
+make DESTDIR\= sitearchdir\=./.gem.20260217-10-j8509v sitelibdir\=./.gem.20260217-10-j8509v
+compiling date_core.c
+compiling date_parse.c
+compiling date_strftime.c
+compiling date_strptime.c
+linking shared-object date_core.so
+
+current directory: /bookshare/vendor/bundle/ruby/3.1.0/gems/date-3.5.1/ext/date
+make DESTDIR\= sitearchdir\=./.gem.20260217-10-j8509v sitelibdir\=./.gem.20260217-10-j8509v install
+/usr/bin/install -c -m 0755 date_core.so ./.gem.20260217-10-j8509v
