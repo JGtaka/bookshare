@@ -1,12 +1,190 @@
-top#index
+  <!-- Hero -->
+  <section class="relative overflow-hidden pt-16 pb-24 lg:pt-32 lg:pb-32">
+    <div class="absolute inset-0 abstract-pattern -z-10"></div>
 
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+      <div class="mx-auto max-w-4xl">
 
-<% if user_signed_in? %>
-  <p>ログイン中: <%= current_user.email %></p>
-  <%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete } %>
-  <%= link_to '記事一覧', articles_path %>
-  <%= link_to '新規記事作成', new_article_path %>
-<% else %>
-  <%= link_to 'ログイン', new_user_session_path %>
-  <%= link_to '新規登録', new_user_registration_path %>
-<% end %>
+        <div class="mb-8 flex justify-center">
+          <span
+            class="inline-flex items-center rounded-full bg-primary/10 px-3 py-1
+                   text-sm font-medium text-primary
+                   ring-1 ring-inset ring-primary/20">
+            RUNTEQ生限定プラットフォーム
+          </span>
+        </div>
+
+        <!-- ★ Hero Title -->
+        <h1
+          class="text-4xl sm:text-7xl
+                 font-black
+                 leading-[1.05]    
+                 tracking-tight                     text-slate-900 dark:text-slate-100">
+          アウトプットで<span class="text-primary">Rails</span>学習を<br class="hidden sm:block" />
+          加速させる
+        </h1>
+
+        <!-- ★ Description -->
+        <p
+          class="mx-auto mt-8 max-w-2xl
+                 text-base sm:text-lg  
+                 leading-8
+                 text-slate-600 dark:text-slate-400">
+          学習ノートやコードスニペットを投稿し、仲間からのレビューを受けることで、<br class="hidden sm:block" />
+          読書を「知識の定着」へと変える技術書アウトプット共有プラットフォーム。
+        </p>
+
+        <!-- CTA -->
+        <div class="mt-12 flex flex-wrap justify-center gap-4">
+          <% unless user_signed_in? %>
+            <%= link_to "今すぐはじめる",
+              new_user_registration_path,
+              class: "rounded-xl bg-primary
+                      px-10 py-5
+                      text-lg font-bold text-white
+                      shadow-lg shadow-primary/20
+                      transition-all hover:-translate-y-0.5 hover:bg-primary/90" %>
+
+            <%= link_to "ログイン",
+              new_user_session_path,
+              class: "rounded-xl border-2 border-slate-200 bg-white
+                      px-10 py-5
+                      text-lg font-bold text-slate-700
+                      transition-all hover:bg-slate-50" %>
+          <% else %>
+            <%= link_to "記事一覧へ",
+              articles_path,
+              class: "rounded-xl bg-primary
+                      px-10 py-5
+                      text-lg font-bold text-white
+                      shadow-lg shadow-primary/20
+                      transition-all hover:-translate-y-0.5 hover:bg-primary/90" %>
+          <% end %>
+        </div>
+
+        <!-- Avatars + Count -->
+        <div class="mt-12 flex flex-col items-center gap-4 text-sm text-slate-500">
+          <div class="flex -space-x-2">
+            <div class="flex h-10 w-10 items-center justify-center rounded-full border-2 border-white bg-slate-200 text-slate-400">
+              <span class="material-symbols-outlined text-sm">person</span>
+            </div>
+            <div class="flex h-10 w-10 items-center justify-center rounded-full border-2 border-white bg-slate-300 text-slate-500">
+              <span class="material-symbols-outlined text-sm">person</span>
+            </div>
+            <div class="flex h-10 w-10 items-center justify-center rounded-full border-2 border-white bg-slate-400 text-slate-600">
+              <span class="material-symbols-outlined text-sm">person</span>
+            </div>
+          </div>
+
+          <span class="font-medium">
+            <%= User.count %>人以上のRUNTEQ生が参加中
+          </span>
+        </div>
+
+        <!-- Icons -->
+        <div class="mt-20 flex items-center justify-center gap-8 opacity-40">
+          <span class="material-symbols-outlined text-7xl text-primary">auto_stories</span>
+          <span class="material-symbols-outlined text-8xl text-primary">menu_book</span>
+          <span class="material-symbols-outlined text-7xl text-primary">library_books</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section id="how-it-works" class="bg-white py-24 sm:py-32 dark:bg-slate-900">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="mx-auto mb-20 max-w-3xl text-center">
+        <h2 class="text-base font-bold uppercase tracking-wider text-primary">
+          Simple Process
+        </h2>
+        <p
+          class="mt-2 text-3xl sm:text-4xl
+                 font-black
+                 leading-[1.15]      
+                 tracking-tight
+                 text-slate-900 dark:text-slate-100">
+          使いかた
+        </p>
+        <p class="mt-4 text-lg text-slate-600 dark:text-slate-400">
+          学習効率を高め、強力なポートフォリオを構築するための3つのステップ。
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 gap-12 md:grid-cols-3">
+        <% steps = [
+          ["menu_book", "1. 本を読んで学ぶ", "お気に入りのRails技術書を読み、自分なりの視点で重要なコンセプトを整理します。"],
+          ["edit_note", "2. アウトプットを書く", "学習ノートや実装コード、発見したことをコミュニティにシェアしましょう。"],
+          ["forum", "3. フィードバックをもらう", "RUNTEQの仲間から建設的なレビューや多様な洞察を受け取り、理解を深めます。"]
+        ] %>
+
+        <% steps.each_with_index do |(icon, title, body), index| %>
+          <div class="group relative flex flex-col items-center text-center">
+              <div
+                class="mb-8 flex h-24 w-24 items-center justify-center rounded-3xl
+                      border border-slate-100 bg-slate-50
+                      text-primary transition-colors
+                      group-hover:border-primary group-hover:bg-primary group-hover:text-white">
+                <span class="material-symbols-outlined text-4xl"><%= icon %></span>
+              </div>
+
+            <h3 class="mb-4 text-xl font-bold text-slate-900 dark:text-white">
+              <%= title %>
+            </h3>
+            <p class="leading-relaxed text-slate-600 dark:text-slate-400">
+              <%= body %>
+            </p>
+
+            <% if index < 2 %>
+              <div class="absolute -right-6 top-12 hidden opacity-10 lg:block">
+                <span class="material-symbols-outlined text-5xl">chevron_right</span>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom CTA -->
+  <section class="py-24 sm:py-32 pb-40">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div
+        class="relative isolate overflow-hidden rounded-3xl bg-slate-900 px-6 py-24 text-center shadow-2xl sm:px-16">
+
+        <h2
+          class="mx-auto max-w-2xl
+                 text-3xl sm:text-4xl
+                 font-black
+                 leading-[1.15] 
+                 tracking-tight
+                 text-white">
+          Rails学習の新しい一歩を踏み出しませんか？
+        </h2>
+
+        <p class="mx-auto mt-6 max-w-xl text-lg leading-8 text-slate-300">
+          今すぐRUNTEQコミュニティに参加して、あなたの知識を共有しましょう。
+          最高の学習方法は、誰かに教えることです。
+        </p>
+
+        <div class="mt-10 flex items-center justify-center gap-x-6">
+          <% unless user_signed_in? %>
+            <%= link_to "今すぐはじめる",
+              new_user_registration_path,
+              class: "rounded-xl bg-primary
+                      px-10 py-4
+                      text-lg font-bold text-white
+                      transition-colors hover:bg-primary/90" %>
+          <% else %>
+            <%= link_to "記事を投稿する",
+              new_article_path,
+              class: "rounded-xl bg-primary
+                      px-10 py-4
+                      text-lg font-bold text-white
+                      transition-colors hover:bg-primary/90" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </section>
