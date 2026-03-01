@@ -1,1 +1,34 @@
 @import "tailwindcss";
+/* フォント */
+@layer base {
+  body {
+    font-family: "Noto Sans JP", "Lexend", sans-serif;
+  }
+}
+
+/* カスタムカラー */
+@layer utilities {
+  .bg-primary {
+    background-color: #f48525;
+  }
+
+  .text-primary {
+    color: #f48525;
+  }
+
+  .border-primary {
+    border-color: #f48525;
+  }
+}
+
+/* 背景パターン */
+@layer components {
+  .abstract-pattern {
+    background-image:
+      radial-gradient(#f48525 0.5px, transparent 0.5px),
+      radial-gradient(#f48525 0.5px, #ffffff 0.5px);
+    background-size: 20px 20px;
+    background-position: 0 0, 10px 10px;
+    opacity: 0.1;
+  }
+}
