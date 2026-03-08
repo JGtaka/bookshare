@@ -1,0 +1,74 @@
+ <div class="flex-1 flex items-center justify-center px-4">
+    <div class="w-full max-w-md bg-white rounded-2xl shadow-sm p-8">
+
+      <!-- Icon -->
+      <div class="flex justify-center mb-6">
+        <div class="w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center text-orange-500 text-xl">
+          🔒
+        </div>
+      </div>
+
+      <!-- Title -->
+      <h1 class="text-2xl font-bold text-center mb-2">おかえりなさい</h1>
+      <p class="text-center text-slate-500 text-sm mb-8">
+        Rails学習ポータルにログインしてアウトプットを続けましょう
+      </p>
+
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+        <!-- Email -->
+        <div class="flex flex-col items-center mb-4">
+          <%= f.label :email, "メールアドレス",
+            class: "block text-sm font-medium text-slate-700 mb-1" %>
+
+          <%= f.email_field :email,
+            autofocus: true,
+            autocomplete: "email",
+            placeholder: "example@runteq.jp",
+            class: " rounded-lg border border-slate-200 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400" %>
+        </div>
+
+        <!-- Password -->
+        <div class="flex flex-col items-center mt-4">
+          <div class="flex justify-between items-center mb-1">
+            <%= f.label :password, "パスワード",
+              class: "text-sm font-medium text-slate-700" %>
+          </div>
+
+          <%= f.password_field :password,
+            autocomplete: "current-password",
+            placeholder: "パスワード",
+            class: " rounded-lg border border-slate-200 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400" %>
+
+           <%= link_to "パスワードを忘れた方",
+              new_password_path(resource_name),
+              class: "text-xs text-orange-500 hover:underline" %>
+        </div>
+
+        <!-- Remember me -->
+        <% if devise_mapping.rememberable? %>
+          <div class="flex justify-center my-10">
+            <%= f.check_box :remember_me,
+              class: "rounded border-slate-300 text-orange-500 focus:ring-orange-400" %>
+            <%= f.label :remember_me, "ログイン状態を保持する",
+              class: "text-sm text-slate-600 centar" %>
+          </div>
+        <% end %>
+
+        <!-- Submit -->
+        <div class="mb-6 text-center my-4">
+          <%= f.submit "ログイン",
+            class: " rounded-lg bg-primary px-5 py-2 text-sm font-bold text-white hover:opacity-90 transition-colors" %>
+        </div>
+
+      <% end %>
+
+      <!-- Sign up -->
+      <p class="text-center text-sm text-slate-500 my-10">
+        <%= link_to "新規登録",
+          new_registration_path(resource_name),
+          class: "rounded-lg bg-primary px-5 py-2 text-sm font-bold text-white hover:opacity-90 transition-colors" %>
+      </p>
+
+    </div>
+  </div>
