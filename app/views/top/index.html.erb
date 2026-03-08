@@ -114,8 +114,8 @@
       </div>
 
 
-      <div class="grid grid-cols-3 gap-4 mt-8">
-        <div class="mt-12 flex  gap-3">
+      <div class="mt-16">
+        <div class="grid grid-cols-3 gap-6 lg:gap-12 max-w-6xl mx-auto">
         <% steps = [
           ["menu_book", "1. 本を読んで学ぶ", "お気に入りのRails技術書を読み、""自分なりの視点で重要なコンセプトを整理します。"],
           ["edit_note", "2. アウトプットを書く", "学習ノートや実装コード、発見したことをコミュニティにシェアしましょう。"],
@@ -123,24 +123,24 @@
         ] %>
 
         <% steps.each_with_index do |(icon, title, body), index| %>
-          <div class="group relative flex flex-col items-center text-center">
+          <div class="group relative flex flex-col items-center text-center step max-w-xs">
               <div
-                class="mb-8 flex h-23 w-24 items-center justify-center rounded-3xl
+                class="mb-8 flex h-24 w-24 items-center justify-center rounded-3xl
                       border border-slate-100 bg-slate-50
                       text-primary transition-colors
                       group-hover:border-primary group-hover:bg-primary group-hover:text-white">
                 <span class="material-symbols-outlined text-4xl"><%= icon %></span>
               </div>
 
-            <h3 class="mb-4 text-xl font-bold text-slate-900 dark:text-white">
+            <h3 class="mb-6 text-2xl lg:text-3xl font-bold text-slate-900 dark:text-white">
               <%= title %>
             </h3>
-            <p class="leading-relaxed text-slate-600 dark:text-slate-400">
+            <p class="text-base lg:text-lg leading-relaxed text-slate-600 dark:text-slate-400">
               <%= body %>
             </p>
 
             <% if index < 2 %>
-              <div class="absolute -right-6 top-12 hidden opacity-10 lg:block">
+              <div class="absolute -right-8 top-12 hidden opacity-20 lg:block xl:block">
                 <span class="material-symbols-outlined text-5xl">chevron_right</span>
               </div>
             <% end %>
@@ -163,7 +163,7 @@
                  font-black
                  leading-[1.15] 
                  tracking-tight
-                 text-black
+                 text-white
                  mt-8 
                  mb-8">
           Rails学習の新しい一歩を踏み出しませんか？
