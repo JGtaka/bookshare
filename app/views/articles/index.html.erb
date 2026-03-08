@@ -1,38 +1,98 @@
-articles
-<!-- 記事一覧 -->
-  <div class="row">
-    <div class="col-12">
-      <div class="row">
-        <% if @articles.present? %>
-          <% @articles.each do |article| %>
-            <div class="col-sm-12 col-lg-4 mb-3">
-              <div id="article-id-<%= article.id %>">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="d-flex">
-                      <h4 class="card-title">
-                        <%= link_to article.title, article_path(article) %>
-                      </h4>
-                      <div class='ms-auto'>
-                        <%= link_to '記事編集', edit_article_path(article), id: "button-edit-#{article.id}"  %>
-                        <%= link_to '削除', article_path(article), data: { turbo_method: :delete, turbo_confirm: t('defaults.delete_confirm') } %>
+<div class="min-h-screen bg-slate-50 dark:bg-slate-900">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+    <div class="max-w-4xl mx-auto">
+      <!-- メインコンテンツ -->
+      <div>
+        <!-- ヘッダー -->
+        <div class="mb-8">
+          <h1 class="text-3xl font-black text-slate-900 dark:text-white mb-2">
+            学習アウトプットフィード
+          </h1>
+          <p class="text-slate-600 dark:text-slate-400">
+            RUNTEQの仲間の学びをチェックしよう
+          </p>
+        </div>
+
+        <!-- 記事一覧 -->
+        <div>
+          <% if @articles.present? %>
+            <% @articles.each_with_index do |article, index| %>
+              <div class="mb-8 <%= 'border-b border-slate-200 dark:border-slate-700' unless index == @articles.length - 1 %>">
+                <article class="bg-white dark:bg-slate-800 rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+                  <!-- 記事内容 -->
+                  <div class="p-6">
+                    <div class="flex items-start justify-between mb-3">
+                      <!-- 作者情報 -->
+                      <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 bg-slate-300 rounded-full flex items-center justify-center">
+                          <span class="text-sm font-medium text-slate-600">
+                            <%= article.user.email&.first&.upcase || "U" %>
+                          </span>
+                        </div>
+                        <div>
+                          <p class="font-medium text-sm text-slate-900 dark:text-white">
+                            <%= article.user.email&.split('@')&.first || "匿名ユーザー" %>
+                          </p>
+                          <p class="text-xs text-slate-500">
+                            投稿日: <%= l article.created_at, format: :short %>
+                          </p>
+                        </div>
                       </div>
+
+                      <!-- 編集・削除ボタン（ログインユーザーのみ） -->
+                      <% if user_signed_in? && current_user == article.user %>
+                        <div class="flex gap-2">
+                          <%= link_to edit_article_path(article), 
+                              class: "text-slate-400 hover:text-slate-600 transition-colors" do %>
+                            <span class="material-symbols-outlined text-sm">edit</span>
+                          <% end %>
+                          <%= link_to article_path(article), 
+                              data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" },
+                              class: "text-slate-400 hover:text-red-600 transition-colors" do %>
+                            <span class="material-symbols-outlined text-sm">delete</span>
+                          <% end %>
+                        </div>
+                      <% end %>
                     </div>
-                    <ul class="list-inline">
-                      <li><i class="bi bi-calendar"></i><%= l article.created_at, format: :short %></li>
-                    </ul>
-                    <p class="card-text"><%= article.body %></p>
+
+                    <!-- 記事タイトル -->
+                    <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-3 hover:text-orange-600 transition-colors">
+                      <%= link_to article.title, article_path(article) %>
+                    </h2>
+
+                    <!-- 記事概要 -->
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4">
+                      <%= truncate(strip_tags(article.body), length: 120) %>
+                    </p>
+
+                    <!-- アクション -->
+                    <div class="flex justify-end">
+                      <%= link_to "記事を読む", article_path(article), 
+                          class: "inline-flex items-center gap-1 text-orange-600 hover:text-orange-700 text-sm font-medium transition-colors" %>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </article>              </div>            <% end %>
+          <% else %>
+            <div class="text-center py-12">
+              <span class="material-symbols-outlined text-6xl text-slate-300 mb-4 block">article</span>
+              <h3 class="text-lg font-medium text-slate-900 dark:text-white mb-2">
+                記事がまだありません
+              </h3>
+              <p class="text-slate-500 mb-6">
+                最初の記事を投稿して、学習を共有しましょう！
+              </p>
+              <%= link_to "記事を投稿する", new_article_path,
+                  class: "inline-flex items-center px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors" %>
             </div>
           <% end %>
-        <% else %>
-          <div class="mb-3">記事がありません</div>
-        <% end %>  
-       </div>
+        </div>
+
+        <!-- もっと記事を読みたい -->
+        <div class="text-center mt-12">
+          <p class="text-slate-500">もっと記事を読みたい</p>
+        </div>
+      </div>
     </div>
   </div>
-
-
-<%= link_to 'ログイン', root_path %>
+</div>
