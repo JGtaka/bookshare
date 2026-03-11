@@ -1,33 +1,70 @@
-<div class="container pt-5">
-  <div class="row mb-3">
-    <div class="col-lg-8 offset-lg-2">
-      <h1><%= t('.title') %></h1>
-      <article class="card">
-        <div class="card-body">
-          <div class="row">
-            <div class="col-md-9">
-              <h3 style="display: inline;"><%= @article.title %></h3>
-              <ul class="list-inline">
-                <li class="list-inline-item"><%= l @article.created_at, format: :long %></li>
-              </ul>
-              <div class='d-flex justify-content-end'>
-                <%= link_to "#", id: "button-edit-#{@article.id}" do %>
-                  <i class='bi bi-pencil-fill'></i>
-                <% end %>
-                <%= link_to "#", id: "button-delete-#{@article.id}", class: "ms-2" do %>
-                  <i class="bi bi-trash-fill"></i>
-                <% end %>
-              </div>
-              </div>
-            </div>
-            <p><%= simple_format(@article.body) %></p>
-            <p><%= simple_format(@article.curriculum) %></p>
-          </div>
-        </article>
-      </div>
+<div class="max-w-4xl mx-auto px-4 py-8">
+  
+  <!-- パンくず -->
+  <nav class="text-sm text-gray-500 mb-6">
+    <div class="flex items-center space-x-1">
+      <%= link_to "ホーム", root_path, class: "hover:underline" %>
+      <span>›</span>
+      <%= link_to "Rails", articles_path, class: "hover:underline" %>
+      <span>›</span>
+      <span class="text-gray-700"><%= truncate(@article.title, length: 30) %></span>
     </div>
-    </div>
-  </div>
-</div>
+  </nav>
 
-<%= link_to '記事一覧', articles_path %>
+  <!-- カテゴリバッジ -->
+  <% if @article.curriculum.present? %>
+    <div class="mb-6">
+      <span class="inline-flex items-center bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
+        📘 カリキュラム: <%= @article.curriculum %>
+      </span>
+    </div>
+  <% end %>
+
+  <!-- 記事カード -->
+  <div class="max-w-4xl mx-auto bg-white rounded-xl shadow p-8">
+    
+    <!-- タイトル -->
+    <h1 class="text-4xl font-bold text-gray-900 mb-8 leading-tight">
+      <%= @article.title %>
+    </h1>
+
+    <!-- 投稿者情報 -->
+    <div class="flex items-center justify-between mb-8 pb-6 border-b border-gray-200">
+      <div class="flex items-center space-x-3">
+        <img src="/default-avatar.png" 
+             class="w-10 h-10 rounded-full bg-gray-300" 
+             alt="投稿者アバター">
+        <div>
+          <p class="text-sm font-medium text-gray-900">投稿者</p>
+          <p class="text-xs text-gray-500">
+            投稿日: <%= l @article.created_at.to_date, format: :long %>
+          </p>
+        </div>
+      </div>
+      
+      <% if current_user == @article.user %>
+        <div class="flex items-center space-x-4">
+          <%= link_to edit_article_path(@article), 
+              class: "text-sm text-gray-500 hover:text-blue-600 flex items-center" do %>
+            ✏️ 編集
+          <% end %>
+          <%= link_to article_path(@article), 
+              method: :delete, 
+              data: { confirm: "削除しますか？" },
+              class: "text-sm text-gray-500 hover:text-red-600" do %>
+            📄 削除
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+
+    <!-- 記事本文 -->
+    <article class="prose prose-lg max-w-none text-gray-800 leading-relaxed">
+      <div class="space-y-6">
+        <%= simple_format(@article.body) %>
+      </div>
+    </article>
+
+  </div>
+
+</div>
